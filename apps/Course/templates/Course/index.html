@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Courses</title>
+</head>
+<body>
+<h3>Add a new course</h3>
+<form action="/process" method="POST">
+{% csrf_token %}
+
+<table>
+<tr>
+<td>Name:</td><td><input type="text" name="name"></td>
+</tr>
+<tr>
+<td>Description:</td><td><textarea name="description" cols:"40" rows="10"></textarea></td>
+</tr>
+<td>
+<td><input type="submit" value="Add"></td>
+</tr>
+</table>
+</form>
+
+
+<h3>Courses</h3>
+
+<table>
+<tr>
+<th>Course Name</th>
+<th>Description</th>
+<th>Date Added</th>
+<th>Actions</th>
+</tr>
+
+{% for num in query %}
+<tr>
+<td>{{num.course_name}}</td>
+<td>{{num.description}}</td>
+<td>{{num.created_at}}</td>
+<td><a href="courses/destroy/{{num.id}}">Remove</td>
+</tr>
+{% endfor %}
+
+
+
+</table>
+
+
+
+
+</form>
+</body>
+</html>

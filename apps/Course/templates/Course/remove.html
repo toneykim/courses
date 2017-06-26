@@ -1,0 +1,17 @@
+<h3>Are you sure want to delete the following course?</h3>
+{% for num in query %}
+Name: {{num.course_name}}<br>
+Description: {{num.description}}
+{% endfor %}
+<br>
+<form action="/" method="post">
+{% csrf_token %}
+<button type="submit" name="no">No</button>
+</form>
+
+{% for num in query %}
+<form action="/remove2" method="post">
+{% csrf_token %}
+<button type="submit" name="yes" value="{{num.id}}">Yes! I want to delete this</button>
+</form>
+{% endfor %}
